@@ -1,6 +1,4 @@
 
-
-async function startUp() {
     const express = require('express')
     const cors = require('cors')
     const expressApp = express()
@@ -12,7 +10,7 @@ async function startUp() {
 
     const { injectDB } = require('./middleware')
 
-    expressApp.use(await injectDB)
+    expressApp.use(injectDB)
     expressApp.use('/api', api)
     const socket = require("socket.io")
     const http = require("http")
@@ -26,6 +24,6 @@ async function startUp() {
     server.listen(5050, () => {
         console.log(`Node server running on 5050`)
     })
-}
 
-startUp()
+
+module.exports = expressApp;
